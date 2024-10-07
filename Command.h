@@ -11,13 +11,13 @@ using namespace std;
 
 class Command {
 private:
-	char command;
+	string command;
 	string src;
 	string dest;
 	int numb;
 
 public:
-	Command(char c)
+	Command(string c)
 	{
 		command = c;
 		src = '\0';
@@ -25,24 +25,19 @@ public:
 		numb = 0;
 	}
 
-	void getInstructions()
+	void setSource(string c)
 	{
-		if (command == 'm')
-		{
-			cout << "Enter source: ";
-			cin >> src;
+			src = c;
+	}
 
-			cout << "Enter destination: ";
-			cin >> dest;
+	void setDestination(string c)
+	{
+			dest = c;
+	}
 
-			cout << "Enter the number of cards: ";
-			cin >> numb;
-
-			return;
-		}
-		else
-			return;
-			
+	void setNumber(int n)
+	{
+			numb = n;
 	}
 
 	bool validMove()
@@ -69,7 +64,7 @@ public:
 		return dest;
 	}
 
-	char getCommand()
+	string getCommand()
 	{
 		return command;
 	}

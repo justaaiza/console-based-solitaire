@@ -17,6 +17,7 @@ private:
 	string suit;
 	int rank;
 	bool flipped;
+	bool prevState;
 
 public:
 	Card(string c = " ", int r = -1)
@@ -24,11 +25,23 @@ public:
 		suit = c;
 		rank = r;
 		flipped = true;
+		prevState = true;
 	}
 
 	void setState(bool flag)
 	{
+		prevState = flipped;
 		flipped = flag;
+	}
+
+	bool getState()
+	{
+		return flipped;
+	}
+
+	bool getPrevState()
+	{
+		return prevState;
 	}
 
 	bool aceCondition()
@@ -57,7 +70,7 @@ public:
 	{
 		if(dest)
 		{
-			if (rank < dest->rank)
+			if ((rank+1) == dest->rank)
 			{
 				if ((suit == "spade" && (dest->suit == "heart" || dest->suit == "diamond"))
 					|| (suit == "club" && (dest->suit == "heart" || dest->suit == "diamond"))
@@ -79,6 +92,7 @@ public:
 		else
 			return false;
 	}
+
 
 };
 

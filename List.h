@@ -196,6 +196,40 @@ public:
 		}
 	}
 
+	void moveToHead(List& src, iterator& itr)
+	{
+		if(itr.iptr)
+		{
+
+			iterator prev = itr.iptr->prev;
+
+			head = itr.iptr;
+			while (itr.iptr->next != nullptr)
+				itr++;
+			tail = itr.iptr;
+
+			
+			if (prev != nullptr)  //updating the tail of src
+			{
+				src.tail = prev.iptr;
+				prev.iptr->next = nullptr;
+
+				prev.iptr->data->setState(false);
+			}
+			else
+			{
+				src.head = src.tail = nullptr;
+			}
+		}
+	}
+
+	bool singleElement()
+	{
+		if (head == tail)
+			return true;
+		else
+			return false;
+	}
 
 	void insertAtTail(Card* card)
 	{
@@ -250,7 +284,7 @@ public:
 			return false;
 	}
 
-	bool elementExit(int i)
+	bool elementExit(int i) //checking if data at a specific index exist
 	{
 		Node* temp = head;
 		int x = 0;
@@ -267,7 +301,7 @@ public:
 			return false;
 	}
 
-	void printElement(int i)
+	void printElement(int i) //printing data at a specific index
 	{
 		Node* temp = head;
 		int x = 0;
@@ -280,6 +314,7 @@ public:
 		cout << *(temp->data);
 	}
 
+	
 };
 
 
